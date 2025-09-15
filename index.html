@@ -1,301 +1,436 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Futuristic Portfolio - Chanaput Saetang</title>
-    <!-- Bootstrap CSS -->
+    <title>Chanaput | Data Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <!-- AOS CSS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./style/style.css" />
   </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">⚡ FuturisticMe</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#experience">Experience</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#achievements">Achievements</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <body class="leading-relaxed">
+    <!-- Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
 
-    <!-- Hero -->
-    <section class="hero">
-      <img src="your-photo.jpg" alt="Profile Picture" />
-      <h1>Hi, I'm Chanaput Saetang 👋</h1>
-      <p>Aspiring Data Engineer | Test Engineer @ Alstom</p>
-      <a href="#projects" class="btn btn-outline-info btn-lg mt-3"
-        >Explore My Work</a
+    <!-- Header & Navigation -->
+    <header
+      class="bg-[#0a192f] bg-opacity-80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-none"
+      id="navbar"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
       >
-    </section>
-
-    <!-- About -->
-    <section id="about" class="container" data-aos="fade-up">
-      <h2 class="text-center mb-4">About Me</h2>
-      <p class="text-center">
-        Robotics & Automation graduate passionate about
-        <strong>Data Engineering, Visualization, and ML</strong>. Experienced in
-        research, data analysis, and system testing. My dream: to work with
-        world-leading teams like Google, building data-driven innovations.
-      </p>
-    </section>
-
-    <!-- Experience -->
-    <section id="experience" class="bg-dark" data-aos="fade-up">
-      <div class="container">
-        <h2 class="text-center mb-4">Experience</h2>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item bg-dark text-white">
-            <h5>Test Engineer – Alstom (2024 – Present)</h5>
-            <p>
-              Railway testing, automation, and validation. Strengthened
-              problem-solving & data analysis skills.
-            </p>
-          </li>
-          <li class="list-group-item bg-dark text-white">
-            <h5>Research Assistant – Chicken Genetics</h5>
-            <p>
-              Presented at international conferences (Thailand, Turkey, China).
-              Analyzed allelic diversity with Python.
-            </p>
-          </li>
-        </ul>
+        <a href="#" class="text-2xl font-bold accent-color">CS</a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#about"
+            class="text-gray-300 hover:accent-color transition-colors duration-300"
+            >About</a
+          >
+          <a
+            href="#experience"
+            class="text-gray-300 hover:accent-color transition-colors duration-300"
+            >Experience</a
+          >
+          <a
+            href="#projects"
+            class="text-gray-300 hover:accent-color transition-colors duration-300"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-300 hover:accent-color transition-colors duration-300"
+            >Contact</a
+          >
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-2xl">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-[#112240] absolute top-full left-0 w-full"
+      >
+        <a
+          href="#about"
+          class="block text-center py-4 text-gray-300 hover:accent-color transition-colors duration-300"
+          >About</a
+        >
+        <a
+          href="#experience"
+          class="block text-center py-4 text-gray-300 hover:accent-color transition-colors duration-300"
+          >Experience</a
+        >
+        <a
+          href="#projects"
+          class="block text-center py-4 text-gray-300 hover:accent-color transition-colors duration-300"
+          >Projects</a
+        >
+        <a
+          href="#contact"
+          class="block text-center py-4 text-gray-300 hover:accent-color transition-colors duration-300"
+          >Contact</a
+        >
       </div>
-    </section>
-    <!-- Work Experience Timeline -->
-    <section id="experience" class="container" data-aos="fade-up">
-      <h2 class="text-center mb-5">Work Experience</h2>
-      <div class="timeline">
-        <!-- Item 1 -->
-        <div class="timeline-item" data-aos="fade-right">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h5>Test Engineer – Alstom</h5>
-            <small>2024 – Present</small>
-            <p>
-              Railway testing, automation, and system validation. Developed
-              strong data analysis and problem-solving skills.
-            </p>
+    </header>
+
+    <main class="container mx-auto px-6 md:px-12 lg:px-20">
+      <!-- Hero Section -->
+      <section id="hero" class="min-h-screen flex items-center justify-center">
+        <div class="max-w-3xl text-left">
+          <p class="text-lg accent-color mb-4">Hi, my name is</p>
+          <h1
+            class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-gray-100"
+          >
+            Chanaput Saetang.
+          </h1>
+          <h2
+            class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-gray-400 mt-2 h-[5rem] sm:h-[6rem] md:h-[7rem]"
+          >
+            <span id="typewriter-text"></span
+            ><span class="typewriter-cursor"></span>
+          </h2>
+          <p class="mt-6 max-w-xl text-lg text-gray-400">
+            I'm a full-stack developer and a Engineering in Robotics and
+            automation, passionate about creating innovative and decentralized
+            applications. I specialize in building robust solutions from idea to
+            deployment.
+          </p>
+          <div class="mt-8">
+            <a href="#projects" class="btn text-lg neon-button">
+              Check out my projects!
+            </a>
           </div>
         </div>
+      </section>
 
-        <!-- Item 2 -->
-        <div class="timeline-item" data-aos="fade-left">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h5>Research Assistant – Chicken Genetics</h5>
-            <small>2022 – 2023</small>
+      <!-- About Section -->
+      <section id="about" class="py-24 fade-in-section">
+        <h2 class="section-heading">About Me</h2>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+          <div class="md:col-span-3 text-gray-400 space-y-4 text-lg">
             <p>
-              Analyzed allelic diversity data, presented at international
-              conferences (Thailand, Turkey, China), and used Python for
-              scientific computation.
+              A Software Tester with a background in robotics and automation
+              engineering and professional experience spanning software
+              development, coding, and data engineering practices. Throughout my
+              career, I have contributed to building and testing reliable
+              systems, improving workflows, and supporting development teams
+              with technical expertise.
             </p>
-          </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="timeline-item" data-aos="fade-right">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h5>Internship – Data Analysis Projects</h5>
-            <small>2021</small>
             <p>
-              Worked on HR Employee Analysis and Australian Soybean Trials,
-              focusing on data cleaning, visualization, and regression models.
+              Developing and testing robust software solutions that enhanced
+              performance and reliability in engineering projects. Leading and
+              collaborating with cross-functional teams, applying both
+              leadership and creativity to solve technical challenges. Exploring
+              data-driven projects, including data analysis and engineering
+              tasks, which sparked my transition toward becoming a Data Engineer
+              / Data Scientist.
             </p>
+            <p>Here are a few technologies I've been working with recently:</p>
+            <ul class="grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-sm">
+              <li class="flex items-center">
+                <span class="accent-color mr-2">▹</span>JavaScript (ES6+)
+              </li>
+              <li class="flex items-center">
+                <span class="accent-color mr-2">▹</span>React & Next.js
+              </li>
+              <li class="flex items-center">
+                <span class="accent-color mr-2">▹</span>Python & Flask
+              </li>
+              <li class="flex items-center">
+                <span class="accent-color mr-2">▹</span>C++ & C#
+              </li>
+              <li class="flex items-center">
+                <span class="accent-color mr-2">▹</span>Hadoop & Spark
+              </li>
+              <li class="flex items-center">
+                <span class="accent-color mr-2">▹</span>MongoDB
+              </li>
+            </ul>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="container" data-aos="zoom-in">
-      <h2 class="text-center mb-4">Projects</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card p-2">
-            <img
-              src="https://via.placeholder.com/300x200"
-              class="card-img-top"
-              alt="HR Analysis"
-            />
-            <div class="card-body">
-              <h5 class="card-title">HR Employee Analysis</h5>
-              <p>Predictive modeling & attrition analysis using Python & ML.</p>
+          <div class="md:col-span-2 flex items-center justify-center">
+            <div
+              class="w-64 h-64 md:w-72 md:h-72 rounded-lg bg-[#112240] p-4 relative group"
+            >
+              <img
+                src="https://placehold.co/400x400/112240/64ffda?text=CS"
+                alt="Chanaput Saetang"
+                class="rounded-lg w-full h-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+              />
+              <div
+                class="absolute inset-0 border-2 border-teal-400 rounded-lg translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 -z-10"
+              ></div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card p-2">
-            <img
-              src="https://via.placeholder.com/300x200"
-              class="card-img-top"
-              alt="Soybean"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Australian Soybean Trials</h5>
-              <p>
-                Yield optimization insights using data visualization &
-                regression.
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="py-24 fade-in-section">
+        <h2 class="section-heading">Where I've Worked</h2>
+        <!-- This is a placeholder section. Add real experience here. -->
+        <div class="max-w-3xl mx-auto">
+          <div class="border-l-2 border-gray-600 pl-8 space-y-12">
+            <div class="relative">
+              <div
+                class="absolute -left-[42px] top-1 h-4 w-4 rounded-full bg-teal-400"
+              ></div>
+              <h3 class="text-xl font-bold text-gray-200">
+                Data Science and Engineering
+              </h3>
+              <p class="font-medium text-gray-400">
+                Professional Development | 2024
               </p>
+              <ul class="mt-4 space-y-2 text-gray-400 custom-ul">
+                <li>
+                  Designing, Executing, and Documenting comprehensive test cases
+                  to ensure the high quality of software products over 10+
+                  projects.
+                </li>
+                <li>
+                  Automate testing and document and review all procedures and
+                  results.
+                </li>
+                <li>
+                  Developed input validation software that verifies
+                  functionality and improves work efficiency by 14%.
+                </li>
+              </ul>
+            </div>
+            <div class="relative">
+              <div
+                class="absolute -left-[42px] top-1 h-4 w-4 rounded-full bg-teal-200"
+              ></div>
+              <h3 class="text-xl font-bold text-gray-200">
+                Software Component Test Engineer
+              </h3>
+              <p class="font-medium text-gray-400">Alstom TH | 2023-2024</p>
+              <ul class="mt-4 space-y-2 text-gray-400 custom-ul">
+                <li>
+                  Designing, Executing, and Documenting comprehensive test cases
+                  to ensure the high quality of software products over 10+
+                  projects.
+                </li>
+                <li>
+                  Automate testing and document and review all procedures and
+                  results.
+                </li>
+                <li>
+                  Developed input validation software that verifies
+                  functionality and improves work efficiency by 14%.
+                </li>
+              </ul>
+            </div>
+            <div class="relative">
+              <div
+                class="absolute -left-[42px] top-1 h-4 w-4 rounded-full bg-teal-100"
+              ></div>
+              <h3 class="text-xl font-bold text-gray-200">
+                Full-Stack Developer
+              </h3>
+              <p class="font-medium text-gray-400">
+                WiPay Co.,Ltd. | Summer 2023
+              </p>
+              <ul class="mt-4 space-y-2 text-gray-400 custom-ul">
+                <li>
+                  Built MQTT-based cloud authority system, boosting device
+                  communication speed by 22%
+                </li>
+                <li>
+                  Led Docker adoption and system design, improving
+                  maintainability by 30%.
+                </li>
+                <li>
+                  Developed IoT data dashboard with React.js, enhancing
+                  monitoring efficiency by 35%.
+                </li>
+              </ul>
+            </div>
+            <div class="relative">
+              <div
+                class="absolute -left-[42px] top-1 h-4 w-4 rounded-full bg-gray-600"
+              ></div>
+              <h3 class="text-xl font-bold text-gray-200">
+                Augmented Reality Software Developer
+              </h3>
+              <p class="font-medium text-gray-400">Freelance | 2022 - 2023</p>
+              <ul class="mt-4 space-y-2 text-gray-400 custom-ul">
+                <li>
+                  Developed an augmented reality web application for the Cloud11
+                  project site hoarding by MQDC, located on Sukhumvit Road,
+                  Bangkok.
+                </li>
+                <li>
+                  Keep the codebase current by aligning with changing
+                  requirements, user feedback, and industry trends for enhanced
+                  features and performance.
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card p-2">
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-24 fade-in-section">
+        <h2 class="section-heading">Things I've Built</h2>
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+          <button class="active" onclick="filterCards('all')">All</button>
+          <button onclick="filterCards('data')">Data</button>
+          <button onclick="filterCards('storage')">Storage</button>
+          <button onclick="filterCards('payments')">Payments</button>
+        </div>
+
+        <!-- Project Cards -->
+        <div class="card-container">
+          <div class="card data">
             <img
-              src="https://via.placeholder.com/300x200"
-              class="card-img-top"
-              alt="Chicken Gene"
+              src="./picture/HistoricalSharePrice.png"
+              alt="2024 Market Sharing Price"
             />
-            <div class="card-body">
-              <h5 class="card-title">Chicken ADSL Gene Study</h5>
-              <p>Genetic diversity analysis with Pandas, NumPy, SciPy.</p>
+            <div class="card-content">
+              <h3>2024 Market Sharing Price | Personal Projects</h3>
+              <p>
+                Extracting essential data from a html dataset and displaying using mamba.
+              </p>
+              <ul class="list-disc">
+                <li>Data Extracting</li>
+                <li>Data visualize</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Pandas</span>
+                <span class="tag">python</span>
+                <span class="tag">mamba</span>
+              </div>
+              <div class="card-links">
+                <a href="#">Source Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card storage">
+            <img
+              src="https://via.placeholder.com/600x300/3d3d3d/ffffff?text=CryptoVault"
+              alt="CryptoVault Project"
+            />
+            <div class="card-content">
+              <h3>CryptoVault IPFS | Decentralized Backup Storage</h3>
+              <p>
+                Decentralized backup and recovery system leveraging IPFS for
+                secure file storage.
+              </p>
+              <ul class="list-disc">
+                <li>AES-256-CBC encryption</li>
+                <li>RSA signature verification</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">IPFS</span>
+                <span class="tag">React.js</span>
+                <span class="tag">Node.js</span>
+              </div>
+              <div class="card-links">
+                <a href="#">Source Code</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Achievements Dashboard -->
-    <section id="achievements" class="container" data-aos="fade-up">
-      <h2 class="text-center mb-4">My Achievements & Skills</h2>
-
-      <!-- Filter Buttons -->
-      <div class="text-center mb-4">
-        <button class="btn btn-outline-info m-1 filter-btn" data-category="all">
-          All
-        </button>
-        <button
-          class="btn btn-outline-info m-1 filter-btn"
-          data-category="programming"
-        >
-          Programming
-        </button>
-        <button
-          class="btn btn-outline-info m-1 filter-btn"
-          data-category="data"
-        >
-          Data Science
-        </button>
-        <button
-          class="btn btn-outline-info m-1 filter-btn"
-          data-category="research"
-        >
-          Research
-        </button>
-        <button
-          class="btn btn-outline-info m-1 filter-btn"
-          data-category="soft"
-        >
-          Soft Skills
-        </button>
-      </div>
-
-      <!-- Card Deck -->
-      <div class="row g-4" id="achievementsCards">
-        <div class="col-md-4 achievement-card" data-category="programming">
-          <div class="card p-3 text-center">
-            <h5>Python</h5>
-            <p>Advanced data analysis, Pandas, NumPy, SciPy</p>
-          </div>
+      <!-- Contact Section -->
+      <section id="contact" class="py-24 text-center fade-in-section">
+        <h2 class="text-2xl font-semibold text-gray-300">What's Next?</h2>
+        <h3 class="text-4xl md:text-5xl font-bold mt-4 text-gray-100">
+          Get In Touch
+        </h3>
+        <p class="mt-6 max-w-xl mx-auto text-lg text-gray-400">
+          I'm currently open to new opportunities and collaborations. Whether
+          you have a question or just want to say hi, I'll do my best to get
+          back to you!
+        </p>
+        <div class="mt-10">
+          <a href="mailto:chanaput.renovo@gmail.com" class="btn text-lg">
+            Say Hello
+          </a>
         </div>
-        <div class="col-md-4 achievement-card" data-category="programming">
-          <div class="card p-3 text-center">
-            <h5>SQL</h5>
-            <p>Database queries, joins, and optimization</p>
-          </div>
-        </div>
-        <div class="col-md-4 achievement-card" data-category="data">
-          <div class="card p-3 text-center">
-            <h5>Machine Learning</h5>
-            <p>Regression, classification, model evaluation</p>
-          </div>
-        </div>
-        <div class="col-md-4 achievement-card" data-category="data">
-          <div class="card p-3 text-center">
-            <h5>Data Visualization</h5>
-            <p>Matplotlib, Plotly, Dashboards</p>
-          </div>
-        </div>
-        <div class="col-md-4 achievement-card" data-category="research">
-          <div class="card p-3 text-center">
-            <h5>Genetics Research</h5>
-            <p>Presented at international conferences</p>
-          </div>
-        </div>
-        <div class="col-md-4 achievement-card" data-category="soft">
-          <div class="card p-3 text-center">
-            <h5>Teamwork & Leadership</h5>
-            <p>Led group research and cross-team collaboration</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dashboard Graph -->
-      <div class="mt-5">
-        <canvas id="achievementsChart" height="120"></canvas>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="container text-center" data-aos="fade-up">
-      <h2 class="mb-4">Contact Me</h2>
-      <p>
-        Email: <a href="mailto:chanaput@example.com">chanaput@example.com</a>
-      </p>
-      <p>
-        LinkedIn:
-        <a href="https://www.linkedin.com/in/yourlinkedin/" target="_blank"
-          >linkedin.com/in/yourlinkedin</a
-        >
-      </p>
-      <p>
-        GitHub:
-        <a href="https://github.com/yourgithub" target="_blank"
-          >github.com/yourgithub</a
-        >
-      </p>
-    </section>
+      </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="text-center py-3">
-      &copy; 2025 Chanaput Saetang - Futuristic Portfolio
+    <footer class="py-6">
+      <div class="flex justify-center items-center space-x-6">
+        <!-- Placeholder links for social media -->
+        <a
+          href="https://github.com/chanaput-s"
+          class="text-gray-400 hover:accent-color transition-colors duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-github"
+          >
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+            ></path>
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/chanaput-s/"
+          class="text-gray-400 hover:accent-color transition-colors duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-linkedin"
+          >
+            <path
+              d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+            ></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-6">
+        Designed & Built by Chanaput Saetang
+      </p>
     </footer>
 
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+    <script src="./script/script.js"></script>
   </body>
 </html>

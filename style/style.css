@@ -1,0 +1,248 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #0a192f;
+  color: #ccd6f6;
+}
+.accent-color {
+  color: #64ffda;
+}
+.btn {
+  @apply px-6 py-3 border border-[#64ffda] text-[#64ffda] rounded-md transition-all duration-300 hover:bg-[#64ffda] hover:bg-opacity-10 hover:-translate-y-1;
+}
+.section-heading {
+  @apply text-3xl md:text-4xl font-bold text-gray-200 mb-12 flex items-center; /* Increased margin-bottom */
+}
+.section-heading::after {
+  content: "";
+  @apply block h-[1px] bg-gray-600 w-full ml-4;
+}
+.project-card {
+  @apply bg-[#112240] rounded-lg shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-teal-500/10;
+}
+.skill-tag {
+  @apply bg-teal-400/10 text-teal-300 text-sm font-medium px-3 py-1 rounded-full;
+}
+
+/* Typewriter effect */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 4.5rem; /* Match text size */
+  background-color: #64ffda;
+  animation: blink 1s infinite;
+}
+@media (max-width: 640px) {
+  .typewriter-cursor {
+    height: 2.5rem;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Fade-in on scroll animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+canvas#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#typewriter-text {
+  font-size: 3rem;
+}
+.neon-button {
+  /* Base button styles */
+  padding: 1rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 9999px; /* Pill shape */
+  transition: all 0.3s ease-in-out;
+
+  /* Transparent stroke with a subtle border */
+  border: 1px solid transparent;
+
+  /* Initial shadow for the transparent stroke effect */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.neon-button:hover,
+.neon-button:focus {
+  /* Neon glow on hover/focus */
+  color: #64ffda; /* Change text color */
+  border-color: #43f7a0; /* Neon border color */
+  box-shadow: 0 0 5px #43f7a0;
+  transform: scale(0.5);
+}
+
+.neon-button:active {
+  /* Deeper glow and push effect on click */
+  color: #64ffda; /* Change text color */
+  border-color: #43f7a0; /* Neon border color */
+  box-shadow: 0 0 5px #43f7a0, 0 0 20px #4ef6a5, 0 0 40px #6fedb0;
+  transform: scale(1.5);
+  border-color: #c084fc;
+}
+.custom-ul {
+  list-style-type: none; /* Removes default bullet points */
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.custom-ul li {
+  position: relative; /* Establishes a positioning context for the ::before pseudo-element */
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem; /* Creates space for the custom bullet */
+  line-height: 1.5; /* Improves readability of wrapped text */
+}
+
+.custom-ul li::before {
+  content: "•"; /* The character for the bullet */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #9f7aea; /* Purple color for the bullet */
+}
+/* Filter Buttons */
+.filter-buttons {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.filter-buttons button {
+  margin: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.filter-buttons button:hover,
+.filter-buttons button.active {
+  background: #00d084;
+  color: #000;
+}
+
+/* Fixed Width Card Layout */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.card {
+  width: 350px; /* fixed width */
+  background: rgba(20, 20, 22, 0.6); /* transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+  backdrop-filter: blur(10px); /* glass effect */
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 255, 170, 0.25);
+  border: 1px solid rgba(0, 255, 170, 0.5);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+.card:hover img {
+  opacity: 1;
+}
+
+.card-content {
+  padding: 20px;
+  flex: 1;
+}
+
+.card-content h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.card-content p {
+  color: #bbb;
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.card-content ul {
+  margin: 0 0 12px 20px;
+  padding: 0;
+  color: #9fe29f;
+  font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.tag {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: #ddd;
+  transition: background 0.3s;
+}
+.tag:hover {
+  background: #00d084;
+  color: #000;
+}
+
+.card-links {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+  font-size: 14px;
+}
+.card-links a {
+  text-decoration: none;
+  color: #00d084;
+  transition: 0.3s;
+}
+.card-links a:hover {
+  color: #0aff9d;
+  text-shadow: 0 0 6px rgba(0, 255, 170, 0.8);
+}
+
+.hidden {
+  display: none;
+}
