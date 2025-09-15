@@ -1,0 +1,256 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #060b19; /* Deeper darker blue for better contrast */
+  color: #ccd6f6;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, h5, h6, .font-outfit {
+  font-family: "Outfit", sans-serif;
+}
+.accent-color {
+  color: #2dd4bf; /* Tailwind teal-400 */
+}
+.btn {
+  @apply px-6 py-3 border border-teal-400 text-teal-400 rounded-full transition-all duration-300 hover:bg-teal-400/10 hover:-translate-y-1 shadow-[0_0_15px_rgba(45,212,191,0.1)] hover:shadow-[0_0_20px_rgba(45,212,191,0.3)];
+}
+.section-heading {
+  @apply text-3xl md:text-5xl font-black text-gray-200 mb-16 flex items-center font-outfit tracking-tight;
+}
+.section-heading::after {
+  content: "";
+  @apply block h-[1px] bg-gradient-to-r from-teal-500/50 to-transparent w-full ml-6;
+}
+.project-card {
+  @apply bg-[#112240] rounded-lg shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-teal-500/10;
+}
+.skill-tag {
+  @apply bg-teal-400/10 border border-teal-400/20 text-teal-300 text-sm font-medium px-4 py-1.5 rounded-full shadow-[0_0_10px_rgba(45,212,191,0.05)];
+}
+
+/* Custom Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Typewriter effect */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 4.5rem; /* Match text size */
+  background-color: #64ffda;
+  animation: blink 1s infinite;
+}
+@media (max-width: 640px) {
+  .typewriter-cursor {
+    height: 2.5rem;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Fade-in on scroll animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+canvas#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#typewriter-text {
+  font-size: 3rem;
+}
+.neon-button {
+  /* Base button styles */
+  padding: 1rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 9999px; /* Pill shape */
+  transition: all 0.3s ease-in-out;
+
+  /* Transparent stroke with a subtle border */
+  border: 1px solid transparent;
+
+  /* Initial shadow for the transparent stroke effect */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.neon-button:hover,
+.neon-button:focus {
+  color: #ffffff;
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(45,212,191,0.5), 0 0 40px rgba(59,130,246,0.3);
+  transform: translateY(-2px);
+}
+
+.neon-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+.custom-ul {
+  list-style-type: none; /* Removes default bullet points */
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.custom-ul li {
+  position: relative; /* Establishes a positioning context for the ::before pseudo-element */
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem; /* Creates space for the custom bullet */
+  line-height: 1.5; /* Improves readability of wrapped text */
+}
+
+.custom-ul li::before {
+  content: "•"; /* The character for the bullet */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #9f7aea; /* Purple color for the bullet */
+}
+/* Filter Buttons */
+.filter-buttons {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.filter-buttons button {
+  margin: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.filter-buttons button:hover,
+.filter-buttons button.active {
+  background: #00d084;
+  color: #000;
+}
+
+/* Fixed Width Card Layout */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.card {
+  width: 350px;
+  background: rgba(13, 25, 48, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border 0.4s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(45, 212, 191, 0.15), inset 0 0 0 1px rgba(45, 212, 191, 0.2);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+.card:hover img {
+  opacity: 1;
+}
+
+.card-content {
+  padding: 20px;
+  flex: 1;
+}
+
+.card-content h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.card-content p {
+  color: #bbb;
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.card-content ul {
+  margin: 0 0 12px 20px;
+  padding: 0;
+  color: #9fe29f;
+  font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.tag {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: #ddd;
+  transition: background 0.3s;
+}
+.tag:hover {
+  background: #00d084;
+  color: #000;
+}
+
+.card-links {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+  font-size: 14px;
+}
+.card-links a {
+  text-decoration: none;
+  color: #00d084;
+  transition: 0.3s;
+}
+.card-links a:hover {
+  color: #0aff9d;
+  text-shadow: 0 0 6px rgba(0, 255, 170, 0.8);
+}
+
+.hidden {
+  display: none;
+}
